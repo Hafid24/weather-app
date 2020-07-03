@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios' 
 
 
-const OPENWEATHERMAP_API_KEY = '3f22c36b9a089e763eda3c404b3f8450' 
-const BASE_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${OPENWEATHERMAP_API_KEY}` 
+ 
 
 class App extends Component {
   constructor(props){
@@ -11,7 +10,8 @@ class App extends Component {
 
     this.state = { 
       city: "", 
-      data: {} 
+      data: {}, 
+      BASE_URL: 'http://api.openweathermap.org/data/2.5/forecast?appid=3f22c36b9a089e763eda3c404b3f8450'
       } 
 
     this._onInputChange = this._onInputChange.bind(this)  
@@ -45,6 +45,7 @@ class App extends Component {
   } 
 
   fetchWeather = (city)=> { 
+    const { BASE_URL } = this.state;
     return new Promise(function(resolve, reject) { 
     const url = `${BASE_URL}&q=${city}` 
     const request = axios.get(url) 
